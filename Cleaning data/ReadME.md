@@ -173,6 +173,204 @@ df['Year'] = np.where(df['Year'].isna(), 'Freshman', df['Year'])
 | `df.loc[row, col] = value` | Updates a specific missing value | `df.loc[10, 'State'] = 'FL'` |
 | `np.where(condition, value_if_true, value_if_false)` | Replace conditionally | `df['Year'] = np.where(df['Year'].isna(), 'Freshman', df['Year'])` |
 
+---
+
+## Handling Inconsistent or Incorrect Values
+
+Inconsistent text or typos often appear as:
+- Values that differ by a few digits or characters (e.g., `Chcgo` instead of `Chicago`)
+- Entries inconsistent with the rest of the column
+
+These issues can lead to incorrect grouping, aggregation, or analysis — so they should be cleaned early in the process.
+
+### Identifying Inconsistent Values
+
+Depending on the **data type**, you can inspect columns as follows:
+
+| Data Type | How to Check | Example |
+|------------|---------------|----------|
+| **Categorical (Text)** | Check unique values | `df['city'].value_counts()` |
+| **Numerical** | Check summary statistics | `df['sales'].describe()` |
+
+---
+
+### Fixing Inconsistent or Incorrect Text
+
+#### 1️⃣ Update Specific Values  
+
+```python
+df.loc[df['city'] == 'Chcgo', 'city'] = 'Chicago' # Use `.loc[]` to directly update values based on conditions.
+```
+
+#### 2️⃣ Conditional Replacement
+```python
+# Use np.where() to update values based on a logical condition.
+
+import numpy as np
+df['status'] = np.where(df['sales'] > 1000, 'High', 'Low')
+```
+
+#### 3️⃣ Value Mapping
+```python
+# Use .map() to replace multiple incorrect values efficiently.
+
+city_map = {
+    'New York': 'New York',
+    'Boston': 'Boston',
+    'Chcgo': 'Chicago',
+    'Sacranto': 'Sacramento'
+}
+df['city'] = df['city'].map(city_map)
+```
+
+#### 4️⃣ String Methods for Text Cleanup
+```python
+# Use Pandas string methods to standardize and clean text columns.
+
+df['city'] = (
+    df['city']
+    .str.lower()       # Convert to lowercase
+    .str.strip()       # Remove extra spaces
+    .str.replace('nyc', 'new york', regex=False)  # Fix abbreviations
+)
+```
+---
+## Best Practices
+- Always inspect value_counts() before and after cleaning.
+- Normalize case (e.g., convert all text to lowercase).
+- Remove extra spaces or unwanted symbols.
+- Maintain a dictionary (mapping) for consistent replacements.
+
+--- 
+##  Common String Methods in Python (and Pandas `.str` Accessor)
+
+Python (and Pandas) provide a wide range of string methods to clean, format, and transform text data.  
+In Pandas, you apply them with the `.str` accessor — e.g., `df['column'].str.lower()`.
+
+---
+
+###  **Case Conversion**
+
+| Method | Description | Example |
+|---------|--------------|----------|
+| `str.lower()` | Converts all characters to lowercase | `'Hello'.lower() → 'hello'` |
+| `str.upper()` | Converts all characters to uppercase | `'Hello'.upper() → 'HELLO'` |
+| `str.title()` | Capitalizes the first letter of each word | `'hello world'.title() → 'Hello World'` |
+| `str.capitalize()` | Capitalizes only the first letter of the string | `'hello'.capitalize() → 'Hello'` |
+| `str.swapcase()` | Swaps uppercase to lowercase and vice versa | `'PyThOn'.swapcase() → 'pYtHoN'` |
+
+---
+
+###  **Whitespace & Character Cleanup**
+
+| Method | Description | Example |
+|---------|--------------|----------|
+| `str.strip()` | Removes whitespace from both ends | `' hello '.strip() → 'hello'` |
+| `str.lstrip()` | Removes whitespace from the left side | `' hello'.lstrip() → 'hello'` |
+| `str.rstrip()` | Removes whitespace from the right side | `'hello '.rstrip() → 'hello'` |
+| `str.replace(old, new)` | Replaces substrings | `'NYC'.replace('NYC', 'New York') → 'New York'` |
+| `str.removeprefix('sub')` | Removes a prefix if present | `'abc123'.removeprefix('abc') → '123'` |
+| `str.removesuffix('sub')` | Removes a suffix if present | `'file.csv'.removesuffix('.csv') → 'file'` |
+
+---
+
+###  **Searching & Matching**
+
+| Method | Description | Example |
+|---------|--------------|----------|
+| `str.contains('text')` | Checks if a substring exists (Pandas `.str.contains()`) | `'data'.__contains__('a') → True` |
+| `str.startswith('prefix')` | Checks if string starts with a given prefix | `'python'.startswith('py') → True` |
+| `str.endswith('suffix')` | Checks if string ends with a given suffix | `'data.csv'.endswith('.csv') → True` |
+| `str.find('sub')` | Returns the index of first occurrence (or `-1`) | `'hello'.find('e') → 1` |
+| `str.count('sub')` | Counts occurrences of a substring | `'banana'.count('a') → 3` |
+
+---
+
+###  **Splitting & Joining**
+
+| Method | Description | Example |
+|---------|--------------|----------|
+| `str.split(' ')` | Splits string into a list | `'a,b,c'.split(',') → ['a', 'b', 'c']` |
+| `str.rsplit(' ', n)` | Splits from the right side | `'a b c d'.rsplit(' ', 1) → ['a b c', 'd']` |
+| `str.join(list)` | Joins list elements into a string | `'-'.join(['a', 'b', 'c']) → 'a-b-c'` |
+
+---
+
+###  **Validation Methods (Check the Type of String)**
+
+| Method | Description | Example |
+|---------|--------------|----------|
+| `str.isalpha()` | True if all chars are alphabetic | `'abc'.isalpha() → True` |
+| `str.isdigit()` | True if all chars are digits | `'123'.isdigit() → True` |
+| `str.isalnum()` | True if all chars are alphanumeric | `'abc123'.isalnum() → True` |
+| `str.islower()` | True if all chars are lowercase | `'abc'.islower() → True` |
+| `str.isupper()` | True if all chars are uppercase | `'ABC'.isupper() → True` |
+| `str.isspace()` | True if string contains only spaces | `'   '.isspace() → True` |
+
+---
+
+###  **Useful Pandas `.str` Methods**
+
+| Method | Description |
+|---------|--------------|
+| `df['col'].str.len()` | Get string length for each element |
+| `df['col'].str.contains('pattern', case=False)` | Filter rows containing text |
+| `df['col'].str.extract('regex')` | Extract patterns using regex |
+| `df['col'].str.replace('old', 'new', regex=True)` | Replace using regex |
+| `df['col'].str.cat(sep=', ')` | Concatenate text values |
+| `df['col'].str.get(i)` | Get character at position `i` |
+
+---
+
+>  **Tip:** Combine multiple string methods for powerful cleaning pipelines:
+> ```python
+> df['city'] = (df['city']
+>     .str.lower()
+>     .str.strip()
+>     .str.replace('nyc', 'new york', regex=False)
+> )
+> ```
+
+---
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
