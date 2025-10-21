@@ -1,0 +1,130 @@
+## Feature Engineering
+
+After cleaning your dataset, you might need to **create new columns** to enhance your analysis. This process is called **Feature Engineering** — transforming raw data into meaningful features that improve the quality and interpretability of your analysis or machine learning model.
+
+---
+### Creating New Columns
+ ```python
+# create or modify a column by assigning a Series or calculation to a new column name: 
+df['new_column'] = some_expression
+ ```
+##### Example 
+  ```python
+df['Total'] = df['Price'] * df['Quantity'] # Create a new numeric column = Price × Quantity
+
+df['Full_Name'] = df['First_Name'].str.strip().str.title() + ' ' + df['Last_Name'] # Create a new Text column
+```
+    
+---
+### Creating Numeric Columns
+
+Use numeric operations to derive new insights by performing calculations on existing numeric columns:
+
+- Calculate **percentages**, ratios, or conditional values.  
+- Example:  
+  ```python
+  df['Discount %'] = (df['Discount'] / df['Price']) * 100
+  ```
+
+    ```python
+    # Create new columns based on logical conditions using NumPy: 
+  import numpy as np
+  df['Performance'] = np.where(df['Score'] >= 80, 'Pass', 'Fail')
+  ```
+
+##### Example 
+  ```python
+import pandas as pd
+
+df = pd.DataFrame({
+    'Price': [100, 200, 150],
+    'Quantity': [2, 3, 1]
+})
+
+df['Total'] = df['Price'] * df['Quantity']  # Total = Price × Quantity
+
+df['Discounted_Price'] = df['Price'] * 0.9  # Add a discount column (10% off)
+
+df['High_Value'] = df['Total'] > 300  # Create a derived flag column
+```
+    
+---
+
+### Creating Datetime Columns
+Use the .dt accessor to extract components from datetime columns: 
+    | Component      | Example                   | Description             |
+| -------------- | ------------------------- | ----------------------- |
+| `dt.date`      | `df['Date'].dt.date`      | Date only               |
+| `dt.year`      | `df['Date'].dt.year`      | Year                    |
+| `dt.month`     | `df['Date'].dt.month`     | Month number (1–12)     |
+| `dt.day`       | `df['Date'].dt.day`       | Day of month            |
+| `dt.dayofweek` | `df['Date'].dt.dayofweek` | Weekday (Mon=0 → Sun=6) |
+| `dt.hour`      | `df['Date'].dt.hour`      | Hour (0–23)             |
+| `dt.minute`    | `df['Date'].dt.minute`    | Minute                  |
+| `dt.second`    | `df['Date'].dt.second`    | Second                  |
+
+ ```python
+# Perform datetime calculations
+df['Days_To_Ship'] = df['Ship Date'] - df['Order Date']
+df['Future_Date'] = df['Order Date'] + pd.to_timedelta(30, unit='d')
+  ```
+##### Example 
+  ```python
+df = pd.DataFrame({
+    'Order_Date': ['2025-01-10', '2025-01-15'],
+    'Delivery_Date': ['2025-01-15', '2025-01-20']
+})
+
+# Convert to datetime
+df['Order_Date'] = pd.to_datetime(df['Order_Date'])
+df['Delivery_Date'] = pd.to_datetime(df['Delivery_Date'])
+
+# Create new column for delivery time
+df['Delivery_Days'] = (df['Delivery_Date'] - df['Order_Date']).dt.days
+
+# Extract month name and weekday
+df['Order_Month'] = df['Order_Date'].dt.month_name()
+df['Order_Weekday'] = df['Order_Date'].dt.day_name()
+```
+
+---
+
+### Creating Text Columns
+String operations allow text extraction, cleaning, and pattern finding. 
+
+| Operation         | Description                      | Example                                  |
+| ----------------- | -------------------------------- | ---------------------------------------- |
+| `.str[start:end]` | Extract characters by position   | `df['Code'].str[0:3]`                    |
+| `.str.split()`    | Split text into multiple columns | `df['Name'].str.split(' ', expand=True)` |
+| `.str.contains()` | Check if text contains a pattern | `df['Email'].str.contains('@gmail')`     |
+
+##### Example 
+  ```python
+df = pd.DataFrame({
+    'Name': [' Alice ', 'BOB', 'charlie'],
+    'City': [' New York', 'LONDON ', 'paris']
+})
+
+# Clean names and cities
+df['Name_clean'] = df['Name'].str.strip().str.title()
+df['City_clean'] = df['City'].str.strip().str.upper()
+
+df['Greeting'] = 'Hello, ' + df['Name_clean'] + '!'  # Create a full name column
+
+```
+
+---
+
+### Summary
+| Column Type  | Common Tasks                                    | Useful Tools                 |
+| ------------ | ----------------------------------------------- | ---------------------------- |
+| **Numeric**  | Ratios, percentages, conditional values         | `np.where()`                 |
+| **Datetime** | Extract year/month/day, time differences        | `.dt.*`, `pd.to_timedelta()` |
+| **Text**     | Splitting, substring extraction, pattern search | `.str.*`                     |
+
+
+
+
+
+
+
