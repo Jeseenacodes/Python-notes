@@ -26,7 +26,7 @@ The goal of **data gathering** is to **find, read, and store** data in a format 
 
 ---
 
-### 🧾 Reading Files into Python
+### Reading Files into Python
 
 Use **Pandas** to read different file types into a DataFrame (`df`):
 
@@ -44,7 +44,7 @@ df = pd.read_json("data.json")
 ```
 ---
 
-### 🧾 Common File Types & Functions
+###  Common File Types & Functions
 
 | File Type | Pandas Function | Example |
 |------------|----------------|----------|
@@ -60,7 +60,7 @@ df = pd.read_json("data.json")
 
 ---
 
-### ⚙️ Key Parameters for `pd.read_csv()`
+###  Key Parameters for `pd.read_csv()`
 
 ```python
 pd.read_csv(
@@ -74,4 +74,38 @@ pd.read_csv(
     na_values=None,       # Define missing value markers
     parse_dates=False     # Automatically parse dates
 )
-``` 
+```
+#####  Tip: Use Shift + Tab inside Jupyter Notebook after typing a function to view all arguments and docstrings.
+---
+### Reading Data from Databases
+
+```python
+# for SQLite
+import pandas as pd
+import sqlite3
+conn = sqlite3.connect("data.db")
+df = pd.read_sql("SELECT * FROM sales", conn)
+```
+
+```python
+# for MySQL
+import mysql.connector
+conn = mysql.connector.connect(
+    host="localhost",
+    database="my_new_db",
+    user="user",
+    password="password"
+)
+df = pd.read_sql("SELECT * FROM employees", conn)
+```
+
+```python
+# From webURL
+df = pd.read_csv("https://raw.githubusercontent.com/user/repo/main/data.csv")
+tables = pd.read_html("https://en.wikipedia.org/wiki/List_of_countries_by_GDP_(nominal)") # Reading HTML tables
+df = tables[0]
+```
+---
+
+
+
