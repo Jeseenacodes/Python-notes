@@ -8,60 +8,22 @@
 | ------------------------ | ------------------------------------------------------- | ------------------------------------------------------------------------ |
 | **1. Import**            | Import Seaborn                                          | `import seaborn as sns`                                                  |
 | **2. Load Data**         | Use a DataFrame                                         | `df = sns.load_dataset('tips')`                                          |
-| **3. Choose Chart Type** | Use seaborn functions                                   | `sns.barplot()`, `sns.lineplot()`, `sns.scatterplot()`, `sns.histplot()` |
+| **3. Chart Type** | Use seaborn functions                                   | `sns.barplot()`, `sns.lineplot()`, `sns.scatterplot()`, `sns.histplot()` |
 | **4. Plot**              | Pass x, y, data                                         | `sns.barplot(x="day", y="total_bill", data=df)`                          |
 | **5. Customize**         | Titles with Matplotlib (`plt.title()`), palette, labels | `sns.set_style("whitegrid")`                                             |
 | **6. Show**              | Render chart                                            | `plt.show()`                                                             |
 
 ## Customizations
 
-### **Titles & Labels**
-
-```python
-# Matplotlib controls titles even while using Seaborn:
-
-plt.title("Sales Trend")
-plt.xlabel("Month")
-plt.ylabel("Revenue ($)")
-```
-
-### Colors
-```python
-# Single color
-sns.barplot(x="day", y="total_bill", data=tips, color="skyblue")
-```
-
-```python
-# Color by category (`hue`)
-sns.scatterplot(x="total_bill", y="tip", hue="sex", data=tips)
-```
-
-### Style Themes
-
-```python
-sns.set_theme(style="whitegrid")      `"darkgrid"`, `"white"`, `"dark"`
-```
-
-### Figure Size
-
-Use Matplotlib:
-
-```python
-plt.figure(figsize=(8, 5))
-sns.barplot(x="day", y="total_bill", data=tips)
-plt.show()
-```
-
-### Legends
-
-Seaborn automatically creates legends when using `hue`, `style`, or `size`.
-
-```python
-# Add or customize:
-
-plt.legend(title="Customer Type")
-```
----
+| **Customization** | **Purpose**                                          | **Code Example**                                       |
+| ----------------- | ---------------------------------------------------- | ------------------------------------------------------ |
+| **Title**         | Add title (uses Matplotlib)                          | `plt.title("Sales by Day")`                            |
+| **Axis Labels**   | Name axes                                            | `plt.xlabel("Day")`<br>`plt.ylabel("Sales")`           |
+| **Colors (hue)**  | Automatically color categories                       |  `Single color - sns.barplot(data=df, x="day", y="sales", hue="type")`<br>`Color by category (`hue`) - sns.scatterplot(x="total_bill", y="tip", hue="sex", data=tips)` |
+| **Palette**       | Change color scheme                                  | `sns.set_palette("pastel")`<br>`sns.set_theme(style="whitegrid")`|
+| **Style / Theme** | Set background & grid style                          | `sns.set_style("whitegrid")`                           |
+| **Figure Size**   | Resize using Matplotlib                              | `plt.figure(figsize=(8,4))`                            |
+| **Legend**        | Seaborn adds automatically; customize via Matplotlib | `plt.legend(title="Type")`                             |
 
 ## How to Code for Seaborn
 
