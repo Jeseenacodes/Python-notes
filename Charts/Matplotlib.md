@@ -1,6 +1,7 @@
 
 # Matplotlib
 Fundamental plotting library in Python. Other libraries like Seaborn, Pandas plots, Plotly are built on top of it. Helps visualize trends, comparisons, distributions, time-series.
+- Use when you need control, customization, and publication-ready scientific figures.
 
 ## Matplotlib has 2 ways to write code:
 
