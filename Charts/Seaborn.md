@@ -4,17 +4,14 @@
 
 => Seaborn = Matplotlib with style & smarter defaults.
 
-| **Chart Type**   | **Seaborn Syntax**                      | **What It Answers**               |
-| ---------------- | --------------------------------------- | --------------------------------- |
-| **Bar Chart**    | `sns.barplot(x=, y=, data=df)`          | Compare categories                |
-| **Line Chart**   | `sns.lineplot(x=, y=, data=df)`         | Trends over time                  |
-| **Scatter Plot** | `sns.scatterplot(x=, y=, data=df)`      | Relationship between 2 variables  |
-| **Histogram**    | `sns.histplot(values, bins=, kde=True)` | Distribution of one variable      |
-| **Box Plot**     | `sns.boxplot(y=, data=df)`              | Spread, outliers                  |
-| **Violin Plot**  | `sns.violinplot(y=, data=df)`           | Distribution + density            |
-| **Heatmap**      | `sns.heatmap(df, annot=True)`           | Correlation, comparison via color |
-| **Pair Plot**    | `sns.pairplot(df)`                      | Multi-variable relationships      |
-| **Count Plot**   | `sns.countplot(x=, data=df)`            | Frequency of categories           |
+| **Step**                 | **Description**                                         | **Example / Notes**                                                      |
+| ------------------------ | ------------------------------------------------------- | ------------------------------------------------------------------------ |
+| **1. Import**            | Import Seaborn                                          | `import seaborn as sns`                                                  |
+| **2. Load Data**         | Use a DataFrame                                         | `df = sns.load_dataset('tips')`                                          |
+| **3. Choose Chart Type** | Use seaborn functions                                   | `sns.barplot()`, `sns.lineplot()`, `sns.scatterplot()`, `sns.histplot()` |
+| **4. Plot**              | Pass x, y, data                                         | `sns.barplot(x="day", y="total_bill", data=df)`                          |
+| **5. Customize**         | Titles with Matplotlib (`plt.title()`), palette, labels | `sns.set_style("whitegrid")`                                             |
+| **6. Show**              | Render chart                                            | `plt.show()`                                                             |
 
 ## Customizations
 
@@ -65,7 +62,18 @@ Seaborn automatically creates legends when using `hue`, `style`, or `size`.
 plt.legend(title="Customer Type")
 ```
 
---------
+| **Chart Type**   | **Seaborn Syntax**                      | **What It Answers**               |
+| ---------------- | --------------------------------------- | --------------------------------- |
+| **Bar Chart**    | `sns.barplot(x=, y=, data=df)`          | Compare categories                |
+| **Line Chart**   | `sns.lineplot(x=, y=, data=df)`         | Trends over time                  |
+| **Scatter Plot** | `sns.scatterplot(x=, y=, data=df)`      | Relationship between 2 variables  |
+| **Histogram**    | `sns.histplot(values, bins=, kde=True)` | Distribution of one variable      |
+| **Box Plot**     | `sns.boxplot(y=, data=df)`              | Spread, outliers                  |
+| **Violin Plot**  | `sns.violinplot(y=, data=df)`           | Distribution + density            |
+| **Heatmap**      | `sns.heatmap(df, annot=True)`           | Correlation, comparison via color |
+| **Pair Plot**    | `sns.pairplot(df)`                      | Multi-variable relationships      |
+| **Count Plot**   | `sns.countplot(x=, data=df)`            | Frequency of categories           |
+---
 ## Common Errors 
 
 | **Error**                                                    | **Why It Happens**                     | **Fix**                                           |
