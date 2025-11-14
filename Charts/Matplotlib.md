@@ -2,18 +2,6 @@
 # Matplotlib
 Fundamental plotting library in Python. Other libraries like Seaborn, Pandas plots, Plotly are built on top of it. Helps visualize trends, comparisons, distributions, time-series.
 
-## Workflow 
-
-| **Step**                 | **Description**                                    | **Example / Notes**                                      |
-| ------------------------ | -------------------------------------------------- | -------------------------------------------------------- |
-| **1. Import**            | Import Matplotlib                                  | `import matplotlib.pyplot as plt`                        |
-| **2. Prepare Data**      | Load or create data lists/arrays/DataFrame columns | `x = df['day']`                                          |
-| **3. Choose Chart Type** | Pick chart function                                | `plt.bar()`, `plt.plot()`, `plt.scatter()`, `plt.hist()` |
-| **4. Plot**              | Pass x & y values                                  | `plt.bar(df['day'], df['total_bill'])`                   |
-| **5. Customize**         | Titles, labels, colors, size, legend               | `plt.title("Sales")`                                     |
-| **6. Show / Save**       | Display or save figure                             | `plt.show()` / `plt.savefig("chart.png")`                |
-
-
 ## Matplotlib has 2 ways to write code:
 
 (A) Pyplot Style (Beginner-Friendly)
@@ -39,7 +27,40 @@ ax.plot(x, y)
 ax.set_title("My Chart")
 plt.show()
 ```
----
+
+## Workflow 
+
+| **Step**                 | **Description**                                    | **Example / Notes**                                      |
+| ------------------------ | -------------------------------------------------- | -------------------------------------------------------- |
+| **1. Import**            | Import Matplotlib                                  | `import matplotlib.pyplot as plt`                        |
+| **2. Prepare Data**      | Load or create data lists/arrays/DataFrame columns | `x = df['day']`                                          |
+| **3. Choose Chart Type** | Pick chart function                                | `plt.bar()`, `plt.plot()`, `plt.scatter()`, `plt.hist()` |
+| **4. Plot**              | Pass x & y values                                  | `plt.bar(df['day'], df['total_bill'])`                   |
+| **5. Customize**         | Titles, labels, colors, size, legend               | `plt.title("Sales")`                                     |
+| **6. Show / Save**       | Display or save figure                             | `plt.show()` / `plt.savefig("chart.png")`                |
+
+## Customizations
+
+| **Customization** | **Purpose**                 | **Code Example**                             |
+| ----------------- | --------------------------- | -------------------------------------------- |
+| **Title**         | Add chart title             | `plt.title("Sales by Day")`                  |
+| **Axis Labels**   | Name axes                   | `plt.xlabel("Day")`<br>`plt.ylabel("Sales")` |
+| **Colors**        | Set bar/line/scatter colors | `plt.plot(x, y, color="red")`<br>`plt.plot(x, y, color="red", linestyle="--", marker="o")`|
+| **Figure Size**   | Resize chart                | `plt.figure(figsize=(8,4))`                  |
+| **Legend**        | Show and label legend       | `plt.legend(title="Type")`<br>`plt.legend(["2024 Sales"])`        |
+| **Style / Theme** | Apply built-in styles       | `plt.style.use("seaborn")`                   |
+| **Grid**          | Show background grid        | `plt.grid(True)`                             |
+
+## Subplots
+
+```python
+fig, ax = plt.subplots(1, 2, figsize=(10, 4))
+ax[0].plot(x, y)
+ax[1].bar(categories, values)
+plt.show()
+```
+
+“`subplots` allows multiple charts inside one figure.”
 
 ## Matplotlib Syntax Table
 
@@ -54,45 +75,6 @@ plt.show()
 | **Box Plot**          | `plt.boxplot(values)`                               | Spread, outliers                 |
 | **Area Chart**        | `plt.fill_between(x, y)`                            | Cumulative trends over time      |
 | **Stacked Bar Chart** | `df.plot(kind='bar', stacked=True)`                 | Composition + comparison         |
-
-## Customizations
-
-### **Titles & Labels**
-
-```python
-plt.title("Sales Trend")
-plt.xlabel("Month")
-plt.ylabel("Revenue ($)")
-```
-
-### **Colors & Styles**
-
-```python
-plt.plot(x, y, color="red", linestyle="--", marker="o")
-```
-
-### **Figure Size**
-
-```python
-plt.figure(figsize=(8, 4))
-```
-
-### **Legend**
-
-```python
-plt.legend(["2024 Sales"])
-```
-
-## Subplots
-
-```python
-fig, ax = plt.subplots(1, 2, figsize=(10, 4))
-ax[0].plot(x, y)
-ax[1].bar(categories, values)
-plt.show()
-```
-
-“`subplots` allows multiple charts inside one figure.”
 
 ---
 
