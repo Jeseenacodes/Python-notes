@@ -1,6 +1,6 @@
 
 # Seaborn
-1. Built on top of Matplotlib which gives clean visuals, built-in themes, charts desgined for statistical analysis.
+1. Built on top of Matplotlib which gives clean visuals, built-in themes, charts desgined for statistical analysis with minimal code.
 
 => Seaborn = Matplotlib with style & smarter defaults.
 
