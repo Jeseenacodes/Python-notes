@@ -3,12 +3,15 @@
 Fundamental plotting library in Python. Other libraries like Seaborn, Pandas plots, Plotly are built on top of it. Helps visualize trends, comparisons, distributions, time-series.
 
 ## Workflow 
-1. Import matplotlib.pyplot.
-2. Prepare data. (List, Arrays, Dataframes)
-3. Choose chart type.
-4. Plot.
-5. Customize (optional).
-6. Show or save the figure.
+
+| **Step**                 | **Description**                                    | **Example / Notes**                                      |
+| ------------------------ | -------------------------------------------------- | -------------------------------------------------------- |
+| **1. Import**            | Import Matplotlib                                  | `import matplotlib.pyplot as plt`                        |
+| **2. Prepare Data**      | Load or create data lists/arrays/DataFrame columns | `x = df['day']`                                          |
+| **3. Choose Chart Type** | Pick chart function                                | `plt.bar()`, `plt.plot()`, `plt.scatter()`, `plt.hist()` |
+| **4. Plot**              | Pass x & y values                                  | `plt.bar(df['day'], df['total_bill'])`                   |
+| **5. Customize**         | Titles, labels, colors, size, legend               | `plt.title("Sales")`                                     |
+| **6. Show / Save**       | Display or save figure                             | `plt.show()` / `plt.savefig("chart.png")`                |
 
 
 ## Matplotlib has 2 ways to write code:
