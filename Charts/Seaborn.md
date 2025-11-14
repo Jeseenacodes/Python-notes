@@ -25,6 +25,8 @@
 | **Figure Size**   | Resize using Matplotlib                              | `plt.figure(figsize=(8,4))`                            |
 | **Legend**        | Seaborn adds automatically; customize via Matplotlib | `plt.legend(title="Type")`                             |
 
+`Seaborn builds on top of Matplotlib` 
+
 ## How to Code for Seaborn
 
 | **Chart Type**   | **Seaborn Syntax**                      | **What It Answers**               |
