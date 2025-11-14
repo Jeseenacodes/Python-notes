@@ -1,6 +1,6 @@
 # Plotly 
 
-Plotly is interactive and browser-based.
+Plotly is interactive and browser-based visualization library. Used for interactive charts, dashboards, or stakeholder-facing visuals.
 
 ## Workflow 
 
