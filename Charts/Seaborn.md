@@ -61,6 +61,8 @@ Seaborn automatically creates legends when using `hue`, `style`, or `size`.
 
 plt.legend(title="Customer Type")
 ```
+---
+# How to Code for Seaborn
 
 | **Chart Type**   | **Seaborn Syntax**                      | **What It Answers**               |
 | ---------------- | --------------------------------------- | --------------------------------- |
