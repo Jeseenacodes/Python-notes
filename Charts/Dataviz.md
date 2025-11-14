@@ -30,7 +30,6 @@
 
 ---
 
-
 | **Advanced Charts**                        | **What It Shows / Why It’s Useful**          | **Typical Use Case**                                           |
 | ----------------------------------------- | -------------------------------------------- | -------------------------------------------------------------- |
 | **Facet/Grid Plots (FacetGrid, catplot)** | Multiple mini-charts split by category       | Compare trends across segments (e.g., sales by region & month) |
@@ -49,3 +48,29 @@
 | **Animated Charts**                       | Time-evolving visuals                        | Storytelling (e.g., sales-over-time animation)                 |
 | **Interactive Plots (Plotly)**            | Hover, zoom, filters                         | Dashboards, web apps                                           |
 | **Geospatial Maps**                       | Data tied to locations                       | Choropleth maps, heatmaps, GPS data                            |
+
+---
+
+## Matplotlib vs Seaborn vs Plotly — Syntax Summary
+
+| **Chart Type**   | **Matplotlib**                      | **Seaborn**                        | **Plotly (Express)**                     |
+| ---------------- | ----------------------------------- | ---------------------------------- | ---------------------------------------- |
+| **Bar Chart**    | `plt.bar(x, y)`                     | `sns.barplot(x=, y=, data=df)`     | `px.bar(df, x=, y=)`                     |
+| **Line Chart**   | `plt.plot(x, y)`                    | `sns.lineplot(x=, y=, data=df)`    | `px.line(df, x=, y=)`                    |
+| **Scatter Plot** | `plt.scatter(x, y)`                 | `sns.scatterplot(x=, y=, data=df)` | `px.scatter(df, x=, y=)`                 |
+| **Pie Chart**    | `plt.pie(values)`                   | ❌ (no direct)                      | `px.pie(df, values=, names=)`            |
+| **Histogram**    | `plt.hist(values)`                  | `sns.histplot(values, bins=)`      | `px.histogram(df, x=)`                   |
+| **Box Plot**     | `plt.boxplot(values)`               | `sns.boxplot(x=, y=, data=df)`     | `px.box(df, x=, y=)`                     |
+| **Violin Plot**  | ❌ (complex manual)                  | `sns.violinplot(x=, y=, data=df)`  | `px.violin(df, x=, y=)`                  |
+| **Heatmap**      | `plt.imshow(matrix)`                | `sns.heatmap(df, annot=True)`      | `px.imshow(df)`                          |
+| **Area Chart**   | `plt.fill_between(x, y)`            | ❌                                  | `px.area(df, x=, y=)`                    |
+| **Pair Plot**    | ❌                                   | `sns.pairplot(df)`                 | `px.scatter_matrix(df)`                  |
+| **Count Plot**   | ❌                                   | `sns.countplot(x=, data=df)`       | `px.bar(df, x=, y=None)` *(auto counts)* |
+| **Stacked Bar**  | `df.plot(kind='bar', stacked=True)` | ❌                                  | `px.bar(df, x=, y=, color=)`             |
+
+## Summary
+
+* **Matplotlib →** Low-level → write more code → full control
+* **Seaborn →** High-level → fewer lines → statistical charts
+* **Plotly →** Interactive → beautiful dashboards → simplest syntax
+
