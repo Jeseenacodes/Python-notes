@@ -4,7 +4,7 @@ Fundamental plotting library in Python. Other libraries like Seaborn, Pandas plo
 
 ## Workflow 
 1. Import matplotlib.pyplot.
-2. Prepare data.
+2. Prepare data. (List, Arrays, Dataframes)
 3. Choose chart type.
 4. Plot.
 5. Customize (optional).
@@ -94,8 +94,16 @@ plt.show()
 ---
 
 ## Common Errors 
-1. Forgetting plt.show()
-2. Wrong indentation
-3. Mismatch of x & y lengths
-4. Trying to plot strings without converting to datetime
-5. Overusing pyplot instead of understanding figure/axis
+
+| **Error**                          | **Why It Happens**                 | **Fix**                                     |
+| ---------------------------------- | ---------------------------------- | ------------------------------------------- |
+| Forgetting `plt.show()`         | Plot doesn't appear                | Always end with `plt.show()`                |
+| x and y lengths mismatch         | Data arrays are different sizes    | Ensure `len(x) == len(y)`                   |
+| Overlapping figures             | New plots draw on old ones         | Use `plt.figure()` or `plt.clf()`           |
+| Using strings for numeric charts | Matplotlib can’t parse strings     | Convert columns to numeric                  |
+| Title/label not showing         | Wrong order of commands            | Call `plt.title()` before `plt.show()`      |
+| Case sensitivity errors          | Using `Plot()` instead of `plot()` | Use lowercase Matplotlib methods            |
+| Multiple legends                | Calling `plt.legend()` repeatedly  | Use one legend or specify labels properly   |
+| Invalid color names              | Using unsupported color strings    | Use standard color names (“red”, “#00ff00”) |
+| Incorrect subplot indexing      | Wrong access to axes array         | Use `ax[0]`, `ax[1]` with correct shape     |
+
