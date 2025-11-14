@@ -63,7 +63,7 @@ plt.legend(title="Customer Type")
 ```
 ---
 
-# How to Code for Seaborn
+## How to Code for Seaborn
 
 | **Chart Type**   | **Seaborn Syntax**                      | **What It Answers**               |
 | ---------------- | --------------------------------------- | --------------------------------- |
